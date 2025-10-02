@@ -423,22 +423,28 @@ function ProductDetail() {
                         {cmt.commentText}
                       </p>
                     </div>
-                    {userInfo.id === cmt.userId._id && (
-                      <button
-                        className="bg-[#FF3333]/30  px-4 py-2 rounded-[4px] cursor-pointer hover:bg-[#FF3333]/50 transition-colors duration-300"
-                        onClick={() => {
-                          handleDeleteComment(cmt._id);
-                        }}
-                      >
-                        <IconContext.Provider
-                          value={{
-                            size: "1.5em",
-                            className: "fill-[#FF3333]",
-                          }}
-                        >
-                          <MdDeleteSweep />
-                        </IconContext.Provider>
-                      </button>
+                    {userInfo ? (
+                      <div>
+                        {userInfo.id === cmt.userId._id && (
+                          <button
+                            className="bg-[#FF3333]/30  px-4 py-2 rounded-[4px] cursor-pointer hover:bg-[#FF3333]/50 transition-colors duration-300"
+                            onClick={() => {
+                              handleDeleteComment(cmt._id);
+                            }}
+                          >
+                            <IconContext.Provider
+                              value={{
+                                size: "1.5em",
+                                className: "fill-[#FF3333]",
+                              }}
+                            >
+                              <MdDeleteSweep />
+                            </IconContext.Provider>
+                          </button>
+                        )}
+                      </div>
+                    ) : (
+                      ""
                     )}
                   </div>
                 ))}
