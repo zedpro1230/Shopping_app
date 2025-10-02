@@ -1,7 +1,25 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { IconContext } from "react-icons/lib";
+import { IoMdLogOut } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { setLogin, storeUserInfo } from "../features/counters/cartSlice";
 function NavBar() {
   const userInfo = useSelector((state) => state.cart.userInfo);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // Clear localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    // Clear Redux store
+    dispatch(setLogin(false));
+    dispatch(storeUserInfo(null));
+
+    // Navigate to login
+    navigate("/login");
+  };
   return (
     <div>
       <nav className="bg-[#FFFFFF] shadow-md fixed z-10 top-0 left-0 right-0 h-[80px] flex p-2 justify-between items-center px-8 py-2">
@@ -26,6 +44,16 @@ function NavBar() {
                 {userInfo?.email || "Email"}
               </p>
             </div>
+            <button className="cursor-pointer" onClick={handleLogout}>
+              <IconContext.Provider
+                value={{
+                  className:
+                    "size-[30px] fill-[#424242] hover:fill-[#FF6F00] transition-colors duration-200",
+                }}
+              >
+                <IoMdLogOut />
+              </IconContext.Provider>
+            </button>
           </div>
         </div>
       </nav>

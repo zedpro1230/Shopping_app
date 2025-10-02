@@ -55,10 +55,10 @@ function AdminOrder() {
     }
   };
   return (
-    <div className="flex   mt-[85px] justify-start font-roboto ">
+    <div className="flex   mt-[85px] justify-between font-roboto  ">
       <NavBar />
       <SideBar />
-      <section className=" w-full flex-1 p-2">
+      <section className=" w-[85%] flex-1 p-2">
         <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center font-roboto">
           <h1 className="text-2xl font-bold font-roboto text-[#424242]">
             Quản lý đơn hàng
@@ -75,33 +75,33 @@ function AdminOrder() {
             </div>
           </div>
         </div>
-        <div className="w-full bg-white rounded-lg  pb-4 mt-4 border border-gray-200 shadow-md overflow-x-scroll">
+        <div className="w-full bg-white  min-w-full rounded-lg  pb-4 mt-4 border border-gray-200 shadow-md overflow-x-scroll">
           {orders.length > 0 ? (
-            <table className=" w-full min-w-[1200px] bg-white  rounded-[16px] shadow-xs table-fixed">
+            <table className="   bg-white  rounded-[16px] shadow-xs ">
               <thead className="p-2 bg-[#FFFFF0] text-[#424242] ">
                 <tr>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[100px] h-[100px] pl-4 font-roboto">
                     STT
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[300px]  h-[100px] pl-4 font-roboto">
                     Trạng thái
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
-                    Tên người đặt
+                  <th className=" text-2xl text-left min-w-[400px] h-[100px] pl-4 font-roboto">
+                    <p className="w-full">Tên khách hàng</p>
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[400px] h-[100px] pl-4 font-roboto">
                     Email
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[200px]  h-[100px] pl-4 font-roboto">
                     Số điện thoại
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[300px] h-[100px] pl-4 font-roboto">
                     Thành phố
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[600px] h-[100px] pl-4 font-roboto">
                     Địa chỉ
                   </th>
-                  <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                  <th className=" text-2xl text-left min-w-[300px] h-[100px] pl-4 font-roboto">
                     Chi tiết đơn hàng
                   </th>
                 </tr>
@@ -181,8 +181,8 @@ function AdminOrder() {
                     <td className=" h-[100px] p-4 font-roboto text-[#424242] text-xl">
                       <p>{order.userName}</p>
                     </td>
-                    <td className=" h-[100px] p-4 font-roboto text-[#424242] text-xl">
-                      <p>{order.userId?.email}</p>
+                    <td className=" h-[100px]   p-4 font-roboto text-[#424242] text-xl">
+                      <p className="">{order.userId?.email}</p>
                     </td>
                     <td className=" h-[100px] p-4 font-roboto text-[#424242] text-xl">
                       <p>{order.phoneNumber}</p>
@@ -191,7 +191,7 @@ function AdminOrder() {
                       <p>{order.city}</p>
                     </td>
                     <td className="  p-4 font-roboto text-[#424242] text-xl ">
-                      <p className="w-[200px]  text-wrap text-ellipsis line-clamp-2">
+                      <p className=" max-w-[600px] break-all">
                         {order.address}
                         hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
                       </p>

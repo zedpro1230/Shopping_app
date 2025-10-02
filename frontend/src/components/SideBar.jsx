@@ -41,15 +41,13 @@ function SideBar() {
   };
   return (
     <section
-      className={` p-2 bg-[#FFFFFF] flex flex-col h-[100dvh] relative transition-all duration-300 ${
-        miniSideBar ? "w-[120px]" : "w-[250px] "
+      className={`  bg-[#FFFFFF] flex flex-col justify-center items-center h-[100dvh] relative transition-all duration-300 ${
+        miniSideBar ? "w-[10%]" : "w-[15%] "
       }`}
     >
       <div
-        className={`fixed p-2 top-[80px] bg-[#FFFFFF] h-full transition-all duration-300 left-0 ${
-          miniSideBar
-            ? "w-[120px] flex justify-start flex-col items-center"
-            : "w-[250px] "
+        className={`fixed  top-[80px] bg-[#FFFFFF] h-full transition-all duration-300 left-[12px] right-0 ${
+          miniSideBar ? "w-[9%]  " : "w-[14%]"
         }`}
       >
         <button
@@ -67,11 +65,11 @@ function SideBar() {
             <FaArrowLeft />
           </IconContext.Provider>
         </button>
-        <ul className={`flex flex-col list-none p-0 gap-2 `}>
+        <ul className={`flex flex-col list-none p-0 gap-2 w-full`}>
           {items.map((item, index) => (
             <li
               key={index}
-              className={`p-2 hover:bg-[#F8FAFF] hover:rounded-[8px] h-[80px] 
+              className={`p-2 hover:bg-[#F8FAFF] hover:rounded-[8px] h-[80px] w-full justify-center
               cursor-pointer flex items-center text-[#A7B7DD] text-[20px] font-semibold font-roboto
             gap-2 
               ${
