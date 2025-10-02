@@ -6,6 +6,7 @@ import { useItemsContext } from "../context/Itemscontext";
 import { MdDeleteForever } from "react-icons/md";
 import { IconContext } from "react-icons/lib";
 import { LuUpload } from "react-icons/lu";
+import backendHost from "../config/backendHost";
 function CategoryContent() {
   const [open, setOpen] = useState(false);
   const { categories, setCategories } = useItemsContext();
@@ -16,7 +17,7 @@ function CategoryContent() {
   const handleClose = () => setOpen(false);
   const getCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/categories/");
+      const response = await axios.get(`${backendHost}/categories/`);
       setCategories(response.data.data);
     } catch (error) {
       console.error("Error retrieving categories:", error);
@@ -37,7 +38,7 @@ function CategoryContent() {
     formData.append("image", image);
     try {
       const response = await axios.post(
-        "http://localhost:3000/categories/",
+        `${backendHost}/categories/`,
         formData,
         {
           headers: {
@@ -56,7 +57,7 @@ function CategoryContent() {
   };
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/categories/${id}`);
+      await axios.delete(`${backendHost}/categories/${id}`);
       getCategories();
     } catch (error) {
       alert(error.response?.data?.message || "Error deleting category");

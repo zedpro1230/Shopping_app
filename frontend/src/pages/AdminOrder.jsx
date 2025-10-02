@@ -8,6 +8,7 @@ import { IconContext } from "react-icons/lib";
 import Select from "@mui/material/Select";
 import { useState, useEffect } from "react";
 import Modal from "@mui/material/Modal";
+import backendHost from "../config/backendHost";
 function AdminOrder() {
   const [orders, setOrders] = useState([]);
   const [open, setOpen] = useState(false);
@@ -21,7 +22,7 @@ function AdminOrder() {
   });
   const fetchOrders = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/orders");
+      const response = await axios.get(`${backendHost}/orders`);
       setOrders(response.data.data);
     } catch (error) {
       console.error("Error retrieving orders:", error);
@@ -43,7 +44,7 @@ function AdminOrder() {
   const handleUpdateOrderStatus = async (orderId, newStatus) => {
     try {
       const response = await axios.put(
-        `http://localhost:3000/orders/${orderId}/status`,
+        `${backendHost}/orders/${orderId}/status`,
         { status: newStatus }
       );
       if (response.status === 200) {

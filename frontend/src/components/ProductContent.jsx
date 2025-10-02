@@ -15,6 +15,7 @@ import Loading from "./Loading";
 import ProductUpdateModal from "./ProductUpdateModal";
 import ProductViewModal from "./ProductViewModal";
 import { Pagination } from "@mui/material";
+import backendHost from "../config/backendHost";
 function ProductContent() {
   const [open, setOpen] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
@@ -33,7 +34,7 @@ function ProductContent() {
   // handle categories, city
   const getCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/categories/");
+      const response = await axios.get(`${backendHost}/categories/`);
       setCategories(response.data.data);
     } catch (error) {
       console.error("Error retrieving categories:", error);
@@ -57,7 +58,7 @@ function ProductContent() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/products?page=${currentPage}&limit=10`
+        `${backendHost}/products?page=${currentPage}&limit=10`
       );
       setProducts(response.data.data.items);
       setTotalPages(response.data.data.totalPages);
@@ -123,10 +124,7 @@ function ProductContent() {
     });
     setLoading(true);
     try {
-      const response = await axios.post(
-        "http://localhost:3000/products",
-        formData
-      );
+      const response = await axios.post(`${backendHost}/products`, formData);
       console.log(response.data);
       setOpen(false);
       setLoading(false);
@@ -141,7 +139,7 @@ function ProductContent() {
   const handleDelete = async (productId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:3000/products/${productId}`
+        `${backendHost}/products/${productId}`
       );
       console.log("Product deleted:", response.data);
       // Refresh the product list after deletion

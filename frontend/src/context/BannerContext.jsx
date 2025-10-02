@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback } from "react";
 import axios from "axios";
-
+import backEndHost from "../config/backendHost";
 const BannerContext = createContext();
 
 export const useBanners = () => {
@@ -20,7 +20,7 @@ export const BannerProvider = ({ children }) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get("http://localhost:3000/banners/");
+      const response = await axios.get(`${backEndHost}/banners/`);
       console.log(response.data.data);
       setBanners(response.data.data);
     } catch (error) {
@@ -37,7 +37,7 @@ export const BannerProvider = ({ children }) => {
 
   const deleteBanner = useCallback(async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/banners/${id}`);
+      await axios.delete(`${backEndHost}/banners/${id}`);
       // Update local state by filtering out the deleted banner
       setBanners((prevBanners) =>
         prevBanners.filter((banner) => banner._id !== id)
@@ -52,15 +52,11 @@ export const BannerProvider = ({ children }) => {
   const addBanner = useCallback(
     async (formData) => {
       try {
-        const response = await axios.post(
-          "http://localhost:3000/banners/",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        const response = await axios.post(`${backEndHost}/banners/`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         // Refresh banners after adding new one
         await fetchBanners();
         return response.data;
@@ -76,7 +72,7 @@ export const BannerProvider = ({ children }) => {
     async (id, formData) => {
       try {
         const response = await axios.put(
-          `http://localhost:3000/banners/${id}`,
+          `${backEndHost}/banners/${id}`,
           formData,
           {
             headers: {

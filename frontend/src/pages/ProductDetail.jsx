@@ -15,7 +15,7 @@ import { MdDeleteSweep } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
 import { IoMdSend } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
-
+import backendHost from "../config/backendHost";
 import { useDispatch, useSelector } from "react-redux";
 import {
   storeItem,
@@ -37,7 +37,7 @@ function ProductDetail() {
   };
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/products/${id}`);
+      const response = await axios.get(`${backendHost}/products/${id}`);
       setProduct(response.data.data);
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -45,7 +45,7 @@ function ProductDetail() {
   };
   const fetchcomment = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/comments/${id}`);
+      const response = await axios.get(`${backendHost}/comments/${id}`);
       setComment(response.data);
     } catch (error) {
       console.error("Error fetching product:", error);
@@ -72,7 +72,7 @@ function ProductDetail() {
       return;
     }
     try {
-      const response = await axios.post(`http://localhost:3000/comments/`, {
+      const response = await axios.post(`${backendHost}/comments/`, {
         commentText: inputComment,
         productId: id,
         userId: userInfo.id,
@@ -91,7 +91,7 @@ function ProductDetail() {
   };
   const handleDeleteComment = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:3000/comments/${commentId}`);
+      await axios.delete(`${backendHost}/comments/${commentId}`);
       toast.success("Xoá bình luận thành công!", {
         position: "top-right",
         autoClose: 500,

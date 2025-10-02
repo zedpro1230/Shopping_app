@@ -7,6 +7,7 @@ import { FaUser } from "react-icons/fa";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import backendHost from "../config/backendHost";
 function SignUpForm() {
   const {
     register,
@@ -17,10 +18,7 @@ function SignUpForm() {
   });
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/signup",
-        data
-      );
+      const response = await axios.post(`${backendHost}/auth/signup`, data);
       console.log("User signed up successfully:", response.data);
       alert("Sign up successful! Please log in.");
       // Optionally, redirect to login page or clear the form

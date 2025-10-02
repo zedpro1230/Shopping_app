@@ -1,4 +1,3 @@
-import React from "react";
 import { MdDashboard } from "react-icons/md";
 import { FaImage } from "react-icons/fa6";
 import { TbCategoryFilled } from "react-icons/tb";
@@ -7,8 +6,7 @@ import { MdPayment } from "react-icons/md";
 import { IconContext } from "react-icons/lib";
 import { FaArrowLeft } from "react-icons/fa";
 import { useItemsContext } from "../context/Itemscontext";
-import { useState } from "react";
-import Pagination from "@mui/material/Pagination";
+
 import { useNavigate } from "react-router-dom";
 function SideBar() {
   const items = [

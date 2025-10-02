@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import backendHost from "../config/backendHost";
 function HomeCategory() {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ function HomeCategory() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/categories");
+        const response = await axios.get(`${backendHost}/categories`);
         setCategories(response.data.data);
       } catch (error) {
         console.error("Error fetching categories:", error);

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { storeUserInfo, setLogin } from "../features/counters/cartSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import backendHost from "../config/backendHost";
 function LoginForm() {
   const {
     register,
@@ -21,10 +22,7 @@ function LoginForm() {
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/signin",
-        data
-      );
+      const response = await axios.post(`${backendHost}/auth/signin`, data);
       console.log("Login successful:", response.data);
       if (response.data) {
         localStorage.setItem("token", response.data.token);
@@ -47,7 +45,7 @@ function LoginForm() {
   };
   const handleGoogleSignIn = async () => {
     try {
-      window.location.href = "http://localhost:3000/auth/google";
+      window.location.href = `${backendHost}/auth/google`;
     } catch (error) {
       console.error("Google Sign-In failed:", error);
     }

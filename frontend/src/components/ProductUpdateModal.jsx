@@ -6,7 +6,7 @@ import { useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Select, MenuItem } from "@mui/material";
 import { TiDelete } from "react-icons/ti";
-
+import backendHost from "../config/backendHost";
 import Loading from "./Loading";
 function ProductUpdateModal({
   open,
@@ -24,9 +24,7 @@ function ProductUpdateModal({
   // get product by id
   const fetchProduct = useCallback(async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/products/${productId}`
-      );
+      const response = await axios.get(`${backendHost}/products/${productId}`);
       setProduct(response.data.data);
       setPosters(response.data.data.image || []);
     } catch (error) {
@@ -97,7 +95,7 @@ function ProductUpdateModal({
     setLoading(true);
     try {
       const response = await axios.put(
-        `http://localhost:3000/products/${productId}`,
+        `${backendHost}/products/${productId}`,
         formData
       );
       console.log(response.data);

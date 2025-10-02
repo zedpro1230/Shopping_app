@@ -9,6 +9,7 @@ import {
   totalAmount,
   totalQuantity,
 } from "../features/counters/cartSlice";
+import backendHost from "../config/backendHost";
 import axios from "axios";
 function OrderForm() {
   const {
@@ -34,15 +35,11 @@ function OrderForm() {
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/orders",
-        orderDetails,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axios.post(`${backendHost}/orders`, orderDetails, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       if (response.status === 201) {
         toast.success("Order placed successfully!", {
           position: "top-right",

@@ -8,6 +8,7 @@ import Modal from "@mui/material/Modal";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import backendHost from "../config/backendHost";
 function ProductViewModal({ open, onClose, productId }) {
   const [product, setProduct] = useState(null);
   const [comment, setComment] = useState([]);
@@ -21,7 +22,7 @@ function ProductViewModal({ open, onClose, productId }) {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/products/${productId}`
+          `${backendHost}/products/${productId}`
         );
         console.log("Product response:", response.data);
         setProduct(response.data.data); // Access the data property
@@ -34,7 +35,7 @@ function ProductViewModal({ open, onClose, productId }) {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/comments/${productId}`
+          `${backendHost}/comments/${productId}`
         );
         console.log("Comments response:", response.data);
         setComment(response.data.data || response.data); // Handle both response formats
@@ -47,8 +48,6 @@ function ProductViewModal({ open, onClose, productId }) {
     fetchProduct();
     fetchComments();
   }, [productId, open]);
-  console.log("ProductViewModal -> product", product);
-  console.log("ProductViewModal -> comment", comment);
 
   if (!open) return null;
 

@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import backendHost from "../config/backendHost";
 function HomeBanner() {
   const settings = {
     dots: false,
@@ -20,7 +21,7 @@ function HomeBanner() {
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/banners");
+        const response = await axios.get(`${backendHost}/banners`);
         setBanners(response.data.data);
       } catch (error) {
         console.error("Error fetching banners:", error);

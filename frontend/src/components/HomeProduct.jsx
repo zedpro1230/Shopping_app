@@ -6,6 +6,7 @@ import Pagination from "@mui/material/Pagination";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import backendHost from "../config/backendHost";
 import {
   storeItem,
   totalQuantity,
@@ -23,7 +24,7 @@ function HomeProduct() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/products?page=${page}&limit=15`
+        `${backendHost}/products?page=${page}&limit=15`
       );
       setProducts(response.data.data);
       setTotalPages(response.data.data.totalPages);

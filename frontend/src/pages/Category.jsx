@@ -15,6 +15,7 @@ import {
 } from "../features/counters/cartSlice";
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
+import backendHost from "../config/backendHost";
 function Category() {
   const location = useLocation();
   const { slug } = useParams();
@@ -70,9 +71,9 @@ function Category() {
         name,
       });
       const response = await axios.get(
-        `http://localhost:3000/products/filter?minPrice=${
-          value[0] || ""
-        }&maxPrice=${value[1] || ""}&city=${
+        `${backendHost}/products/filter?minPrice=${value[0] || ""}&maxPrice=${
+          value[1] || ""
+        }&city=${
           city === "Tất cả" ? "" : city
         }&slug=${name}&page=${page}&limit=${limit}`,
         {}
