@@ -105,7 +105,7 @@ class GoogleAuthController {
         });
 
         res.redirect(
-          `http://localhost:3000/home?data=${encodeURIComponent(
+          `http://localhost:3001/home?data=${encodeURIComponent(
             JSON.stringify({
               user: {
                 id: authData.user._id,

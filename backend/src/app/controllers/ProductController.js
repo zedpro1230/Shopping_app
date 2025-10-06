@@ -2,6 +2,7 @@ const Product = require("../models/Product");
 const Category = require("../models/Category");
 const cloudinary = require("../../config/data/cloudinary");
 const slugify = require("slugify");
+const { transformSearchTextRegexp } = require("../helper");
 class ProductController {
   // Create a new product
   async createProduct(req, res) {
@@ -195,6 +196,46 @@ class ProductController {
         .json({ error: "Something wrong when retrieving products" });
     }
   }
+  // Get products by search
+  async searchProducts(req, res) {
+    try {
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      const skip = (page - 1) * limit;
+      const search = req.params.search;
+
+      const regex = new RegExp(transformSearchTextRegexp(search), "i");
+
+      const products = await Product.find({
+        $or: [{ title: { $regex: regex } }],
+      })
+        .populate("category", "categoryTitle")
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 });
+
+      const totalProducts = await Product.countDocuments({
+        $or: [{ title: { $regex: regex } }],
+      });
+
+      if (products.length === 0) {
+        return res.status(404).json({ error: "Không tìm thấy sản phẩm nào" });
+      }
+
+      return res.status(200).json({
+        message: "Tìm kiếm sản phẩm thành công",
+        totalProducts,
+        totalPages: Math.ceil(totalProducts / limit),
+        currentPage: page,
+        data: products,
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ error: "Có lỗi máy chủ khi tìm kiếm sản phẩm" });
+    }
+  }
+
   // Get product by ID
   async getProductById(req, res) {
     try {

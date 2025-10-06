@@ -6,6 +6,7 @@ const bannerRouter = require("./banner");
 const commentRouter = require("./comment");
 const momoRouter = require("./momo");
 const orderRouter = require("./order");
+const userRouter = require("./user");
 function route(app) {
   app.get("/", (req, res) => {
     res.send("Hello World!");
@@ -19,5 +20,6 @@ function route(app) {
   app.use("/comments", commentRouter);
   app.use("/momo", momoRouter);
   app.use("/orders", orderRouter);
+  app.use("/users", userRouter);
 }
 module.exports = route;

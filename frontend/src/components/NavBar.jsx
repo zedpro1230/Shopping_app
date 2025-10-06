@@ -4,21 +4,25 @@ import { IconContext } from "react-icons/lib";
 import { IoMdLogOut } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { setLogin, storeUserInfo } from "../features/counters/cartSlice";
+import { useItemsContext } from "../context/Itemscontext";
 function NavBar() {
   const userInfo = useSelector((state) => state.cart.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { setActiveItem } = useItemsContext();
   const handleLogout = () => {
-    // Clear localStorage
+    // Dọn dẹp localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    // Clear Redux store
+    // Dọn dẹp Redux store
     dispatch(setLogin(false));
     dispatch(storeUserInfo(null));
 
-    // Navigate to login
+    // Navigate den trang đăng nhập
     navigate("/login");
+    // Đặt activeItem về "Dashboard"
+    setActiveItem("Dashboard");
   };
   return (
     <div>
@@ -30,11 +34,12 @@ function NavBar() {
           <div className="flex items-center gap-3">
             <img
               src={
-                userInfo?.avatar ||
+                userInfo?.avatar.url ||
                 "https://static.vecteezy.com/system/resources/thumbnails/011/490/381/small_2x/happy-smiling-young-man-avatar-3d-portrait-of-a-man-cartoon-character-people-illustration-isolated-on-white-background-vector.jpg"
               }
               alt="Logo"
-              className="h-[50px] w-[50px] rounded-full object-cover border border-[#FF6F00]"
+              className="h-[50px] w-[50px] rounded-full object-cover border border-[#FF6F00] cursor-pointer"
+              onClick={() => navigate("/user_profile")}
             />
             <div className=" flex flex-col items-start justify-center">
               <p className="text-lg font-roboto text-[#424242]">

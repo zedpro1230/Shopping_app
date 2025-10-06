@@ -14,6 +14,7 @@ import OrderForm from "./pages/OrderForm";
 import Cart from "./pages/Cart";
 import Category from "./pages/Category";
 import AdminOrder from "./pages/AdminOrder";
+import UserDetail from "./pages/UserDetail";
 import "./index.css";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -34,14 +35,14 @@ function App() {
         dispatch(setLogin(true));
       } catch (error) {
         console.error(
-          "AuthInitializer: Error parsing stored user data:",
+          "Có lỗi khi phân tích chuỗi user từ localStorage:",
           error
         );
 
         localStorage.removeItem("user");
       }
     } else {
-      console.log("AuthInitializer: No user data found in localStorage");
+      console.log("Không tìm thấy thông tin user trong localStorage.");
     }
   }, [dispatch]);
   return (
@@ -50,6 +51,7 @@ function App() {
         <BannerProvider>
           <Routes>
             <Route
+              // Check tự động đăng nhập với role
               path="/"
               element={
                 userInfo ? (
@@ -79,6 +81,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<OrderForm />} />
             <Route path="/category/:slug" element={<Category />} />
+            <Route path="/user_profile" element={<UserDetail />} />
           </Routes>
         </BannerProvider>
       </ItemsProvider>

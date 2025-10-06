@@ -31,3 +31,8 @@ code {
   position: static!important;
   margin-top: 12px!important;
 }
+
+canvas {
+  width: 100% !important;
+  height: 600px !important;
+}

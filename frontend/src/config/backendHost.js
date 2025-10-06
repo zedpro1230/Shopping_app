@@ -1,2 +1,4 @@
-const backendHost = "https://shopping-app-2zg4.onrender.com";
+const backendHost = "http://localhost:3000";
+// https://localhost:3000
+// https://shopping-app-2zg4.onrender.com
 export default backendHost;
