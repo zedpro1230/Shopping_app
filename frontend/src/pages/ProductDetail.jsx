@@ -161,20 +161,23 @@ function ProductDetail() {
   };
 
   return (
-    <div className="p-[140px] bg-[#f4f2ee]">
+    <div className="w-[85%] mx-auto bg-[#f4f2ee]">
       <UserNavBar />
       <ToastContainer />
-      <div className="bg-white rounded-lg border-solid border-1 border-[#e5e5e5] mt-[80px] w-full">
+      <div className="bg-white rounded-lg border-solid border-1 border-[#e5e5e5] mt-[80px] w-full max-lg:mt-[250px]">
         {product && (
-          <div className="flex gap-4 p-4 w-full">
+          <div className="flex gap-4 p-4 w-full max-lg:flex-col">
             <div>
-              <Slider {...settings} className="w-[500px] rounded-lg">
+              <Slider
+                {...settings}
+                className="w-[500px] rounded-lg max-lg:w-full "
+              >
                 {product.image.map((img, index) => (
                   <div key={index} className="flex items-center justify-center">
                     <img
                       src={img.url}
                       alt={product.title}
-                      className="w-full h-[500px] object-cover rounded-lg"
+                      className="w-full h-[500px] object-cover rounded-lg max-md:h-[300px]"
                     />
                   </div>
                 ))}
@@ -182,7 +185,7 @@ function ProductDetail() {
             </div>
 
             <div className="w-full flex flex-col gap-4">
-              <h2 className="text-2xl font-roboto font-bold break-all text-[#424242]">
+              <h2 className="text-2xl font-roboto font-bold break-all text-[#424242] max-md:text-xl">
                 {product.title}
               </h2>
               <Rating
@@ -192,30 +195,30 @@ function ProductDetail() {
                 readOnly
                 size="large"
               />
-              <div className="flex gap-5 items-center  p-4 rounded-lg h-[100px]">
-                <p className="text-[28px] font-roboto font-semibold text-[#FF6100]">
+              <div className="flex gap-5 items-center  p-4 rounded-lg h-[100px] flex-wrap ">
+                <p className="text-[28px] font-roboto font-semibold text-[#FF6100] max-md:text-[24px]">
                   {Math.round(
                     product.price - (product.price * product.discount) / 100
                   ).toLocaleString("de-VN")}
                   đ
                 </p>
-                <p className="text-xl font-roboto font-bold line-through text-black/50">
+                <p className="text-xl font-roboto font-bold line-through text-black/50 max-md:text-lg">
                   {product.price.toLocaleString("de-VN")}đ
                 </p>
-                <p className="text-xl font-roboto font-bold bg-[#FF6100] text-white  px-2 py-1 rounded-md">
+                <p className="text-xl font-roboto font-bold bg-[#FF6100] text-white  px-2 py-1 rounded-md max-md:text-lg">
                   -{product.discount}%
                 </p>
               </div>
               <div className="flex gap-4 items-center">
-                <span className="text-xl text-[#424242] font-roboto font-bold">
+                <span className="text-xl text-[#424242] font-roboto font-bold max-md:text-lg">
                   Trạng thái:
                 </span>
                 {product.stock > 0 ? (
-                  <span className="text-[18px] font-roboto font-bold bg-green-600/80 text-white px-2 py-1 rounded-md">
+                  <span className="text-[18px] font-roboto font-bold bg-green-600/80 text-white px-2 py-1 rounded-md max-md:text-[16px]">
                     Còn hàng
                   </span>
                 ) : (
-                  <span className="text-[18px] font-roboto font-bold bg-red-600/80 text-white px-2 py-1 rounded-md">
+                  <span className="text-[18px] font-roboto font-bold bg-red-600/80 text-white px-2 py-1 rounded-md max-md:text-[16px]">
                     Hết hàng
                   </span>
                 )}
@@ -254,7 +257,8 @@ function ProductDetail() {
               <button
                 className="bg-[#FF6100] gap-2 border-solid border-1 border-[#e5e5e5] flex justify-center 
               items-center text-white text-[20px] font-roboto font-bold rounded-lg p-4 w-[300px]
-               hover:bg-white hover:text-[#FF6100] transition-colors duration-200 cursor-pointer"
+               hover:bg-white hover:text-[#FF6100] transition-colors duration-200 cursor-pointer
+               max-md:w-full max-md:text-lg max-md:p-3"
                 onClick={() => {
                   handleAddToCart(product, quantity);
                 }}
@@ -294,6 +298,7 @@ function ProductDetail() {
               fontWeight: "bold",
               fontSize: "20px",
               fontFamily: "roboto",
+
               "&.Mui-selected": {
                 color: "#FF6F00", // active tab color
               },
@@ -320,7 +325,7 @@ function ProductDetail() {
               {product && (
                 <div className="flex flex-col gap-4">
                   <div>
-                    <div className="flex gap-10 mb-2 justify-between w-[300px]">
+                    <div className="flex gap-10 mb-2 justify-between w-[300px] max-md:flex-col max-md:gap-4">
                       <span className="text-gray-500 font-roboto font-bold">
                         Danh mục
                       </span>
@@ -329,7 +334,7 @@ function ProductDetail() {
                       </span>
                     </div>
 
-                    <div className="flex gap-10 mb-2 justify-between w-[300px]">
+                    <div className="flex gap-10 mb-2 justify-between w-[300px] max-md:flex-col max-md:gap-4">
                       <span className="text-gray-500 font-roboto font-bold">
                         Nơi bán
                       </span>

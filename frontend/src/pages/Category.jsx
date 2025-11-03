@@ -8,6 +8,7 @@ import { IconContext } from "react-icons/lib";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import Footer from "../components/Footer";
 import {
   storeItem,
   totalQuantity,
@@ -16,6 +17,7 @@ import {
 import Pagination from "@mui/material/Pagination";
 import axios from "axios";
 import backendHost from "../config/backendHost";
+
 function Category() {
   const location = useLocation();
   const { slug } = useParams();
@@ -114,10 +116,11 @@ function Category() {
   console.log("Selected price range:", value);
 
   return (
-    <div className="p-8 bg-[#f4f2ee] flex min-h-screen mt-[80px] ">
+    <div className="p-8 bg-[#f4f2ee] flex min-h-screen mt-[80px] max-lg:flex-col max-md:mt-[200px] max-md:p-2">
       <UserNavBar />
       <ToastContainer />
-      <div className="w-[20%] mx-auto bg-white p-8 rounded-lg shadow-md flex flex-col h-fit">
+
+      <div className="w-[20%] mx-auto bg-white p-8 rounded-lg shadow-md flex flex-col h-fit max-lg:w-full ">
         <h1 className="text-[32px] font-bold font-roboto mb-4    text-[#424242]">
           Bộ lọc sản phẩm
         </h1>
@@ -177,12 +180,12 @@ function Category() {
               handleReset();
             }}
           >
-            Xóa bộ lọc
+            Bỏ lọc
           </button>
         </div>
       </div>
-      <div className="w-[75%] mx-auto min-h-dvh  bg-white p-8 rounded-lg shadow-md flex flex-col ">
-        <div className="flex items-center justify-between mb-4">
+      <div className="w-[75%] mx-auto min-h-dvh  bg-white p-8 rounded-lg shadow-md flex flex-col max-lg:w-full max-lg:mt-[20px] max-md:p-2">
+        <div className="flex items-center justify-between mb-4 max-md:flex-col max-md:gap-4 max-md:items-start">
           <div className="flex items-center gap-2">
             <span
               className="bg-[#FF6100] text-white py-1 px-3 cursor-pointer rounded-lg flex justify-center items-center font-medium text-[18px] font-roboto"
@@ -190,8 +193,8 @@ function Category() {
             >
               Trang chủ
             </span>
-            <span className="font-roboto text-[30px]">/</span>
-            <span className="bg-gray-300 text-white py-1 px-3 rounded-lg flex justify-center items-center font-medium text-[18px] font-roboto">
+            <span className="font-roboto text-[30px] text-[#424242]">/</span>
+            <span className="bg-white border border-gray-300 text-[#424242] py-1 px-3 rounded-lg flex justify-center items-center font-medium text-[18px] font-roboto">
               {`  ${name}`}
             </span>
           </div>
@@ -199,7 +202,7 @@ function Category() {
             Tổng số sản phẩm: {products.length}
           </p>
         </div>
-        <div className=" grid grid-cols-[repeat(auto-fill,minmax(360px,1fr))] h-fit gap-5">
+        <div className=" grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] h-fit gap-5">
           {products.length > 0 ? (
             products.map((product) => (
               <div
@@ -212,24 +215,33 @@ function Category() {
               >
                 <img
                   src={product.image[0].url}
-                  className="w-full h-[400px] object-cover rounded-t-[8px]"
+                  className="w-full h-[400px] object-cover rounded-t-[8px] max-md:h-[300px]"
                   alt={product.title}
                 />
                 <div className="flex  items-center justify-between gap-2 mt-2 py-2 px-3">
                   <div>
-                    <h3 className="text-xl font-roboto font-bold text-[#424242] overflow-hidden whitespace-nowrap text-ellipsis w-[250px]">
+                    <h3
+                      className="text-xl font-roboto font-bold text-[#424242] overflow-hidden whitespace-nowrap text-ellipsis w-[250px]
+                    max-md:w-[150px] max-md:text-lg"
+                    >
                       {product.title}
                     </h3>
                     <div className="flex gap-2  flex-col">
                       <div className="flex items-center gap-5">
-                        <p className="text-lg font-roboto font-bold line-through text-[#00000066]">
+                        <p className="text-lg font-roboto font-bold line-through text-[#00000066] max-md:text-base">
                           {product.price.toLocaleString("de-DE")}
                         </p>
-                        <p className="text-xl w-fit font-roboto font-bold bg-[#FF6100]/80 text-white rounded-[4px] px-2 py-1 ml-2 2">
+                        <p
+                          className="text-xl w-fit font-roboto font-bold bg-[#FF6100]/80 text-white rounded-[4px] px-2 py-1 ml-2 2
+                        max-md:text-base"
+                        >
                           -{product.discount}%
                         </p>
                       </div>
-                      <p className="text-xl font-roboto font-semibold text-[#FF6100]">
+                      <p
+                        className="text-xl font-roboto font-semibold text-[#FF6100]
+                       max-md:text-base"
+                      >
                         {Math.round(
                           product.price -
                             (product.price * product.discount) / 100
@@ -239,7 +251,8 @@ function Category() {
                     </div>
                   </div>
                   <button
-                    className="p-1 w-[50px] h-[50px] border bg-[#FF6100] border-[#0000001A] rounded-full flex items-center justify-center cursor-pointer group  hover:bg-white  transition-colors duration-200"
+                    className="p-1 w-[50px] h-[50px] border bg-[#FF6100] border-[#0000001A] rounded-full flex items-center justify-center cursor-pointer group  hover:bg-white 
+                     transition-colors duration-200 max-md:w-[35px] max-md:h-[35px]"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleAddToCart(product);
@@ -248,7 +261,7 @@ function Category() {
                     <IconContext.Provider
                       value={{
                         className:
-                          "fill-white group-hover:fill-[#FF6100] transition-colors duration-200",
+                          "fill-white group-hover:fill-[#FF6100] transition-colors duration-200 max-md:size-[20px]",
                       }}
                     >
                       <BsCart2 size={25} />
@@ -295,7 +308,8 @@ function Category() {
 
                 borderRadius: "8px",
                 "&:hover": {
-                  backgroundColor: "#F0F0F0",
+                  backgroundColor: "#FF6F00",
+                  opacity: 0.8,
                 },
               },
             }}

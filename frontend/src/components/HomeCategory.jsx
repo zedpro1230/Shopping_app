@@ -20,7 +20,7 @@ function HomeCategory() {
   }, []);
 
   return (
-    <div className="w-[85%] mx-auto    rounded-lg  relative  flex flex-col items-center ">
+    <div className="w-[85%] mx-auto    rounded-lg  relative  flex flex-col items-center max-md:w-[95%] mb-10">
       <h2 className=" text-[26px] font-bold font-roboto text-[#424242] mb-8 ">
         Danh mục sản phẩm
       </h2>

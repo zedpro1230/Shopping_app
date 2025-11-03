@@ -8,7 +8,6 @@ function Login() {
       className="flex justify-center items-center h-screen w-full
     "
       style={{
-        backgroundImage: `url(${bg})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",

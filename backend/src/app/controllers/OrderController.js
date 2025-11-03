@@ -57,7 +57,7 @@ class OrderController {
       if (!order) {
         return res
           .status(404)
-          .json({ success: false, message: "Order not found" });
+          .json({ success: false, message: "Không tìm thấy đơn hàng của bạn" });
       }
       res.status(200).json({ success: true, data: order });
     } catch (error) {
@@ -77,13 +77,11 @@ class OrderController {
       }
       order.status = status;
       await order.save();
-      res
-        .status(200)
-        .json({
-          success: true,
-          message: "Cập nhật trạng thái đơn hàng thành công",
-          order,
-        });
+      res.status(200).json({
+        success: true,
+        message: "Cập nhật trạng thái đơn hàng thành công",
+        order,
+      });
     } catch (error) {
       console.error("Error updating order status:", error);
       res.status(500).json({ error: "Lỗi máy chủ nội bộ" });

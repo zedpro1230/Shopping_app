@@ -52,7 +52,7 @@ function LoginForm() {
   };
 
   return (
-    <div className=" bg-white/40 backdrop-blur p-6 rounded-2xl shadow-md w-[500px] flex flex-col gap-6 ">
+    <div className=" bg-white/40 backdrop-blur p-6 rounded-2xl shadow-md w-[500px] flex flex-col gap-6 border border-gray-200">
       <h2 className="text-[32px] font-bold font-roboto text-[#424242] text-center">
         Đăng Nhập
       </h2>
@@ -75,7 +75,7 @@ function LoginForm() {
             className="border bg-white cursor-pointer border-gray-100 p-2 h-[40px] text-[20px] rounded-lg w-full mb-2 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
             type="email"
             id="email"
-            placeholder="Enter your email ex:123@gmail.com"
+            placeholder="Nhập email ex:123@gmail.com"
             {...register("email", {
               required: true,
               pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -99,7 +99,7 @@ function LoginForm() {
           <input
             className="border bg-white cursor-pointer border-gray-100 p-2 h-[40px] text-[20px] rounded-lg w-full mb-2 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
             type="password"
-            placeholder="Enter your password"
+            placeholder="Nhập mật khẩu"
             id="password"
             {...register("password", { required: true })}
           />
@@ -120,7 +120,7 @@ function LoginForm() {
         <div className="flex-1 h-[1px] bg-gray-800"></div>
       </div>
       <button
-        className="bg-white text-white p-2 rounded-lg shadow-xs cursor-pointer"
+        className="bg-white text-white p-2 rounded-lg shadow-xs cursor-pointer  border border-gray-300 hover:bg-gray-100 transition-colors"
         onClick={() => {
           handleGoogleSignIn();
         }}

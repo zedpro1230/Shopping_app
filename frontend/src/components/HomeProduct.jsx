@@ -74,10 +74,10 @@ function HomeProduct() {
   };
 
   return (
-    <div className="w-[85%] mx-auto  mt-4   gap-10   rounded-lg  ">
+    <div className="w-[85%] mx-auto  mt-4   gap-10   rounded-lg  max-md:w-[95%]">
       <ToastContainer />
       <div className=" w-full flex flex-col justify-between">
-        <div className="   grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-10 ">
+        <div className="   grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-10 ">
           {products.items &&
             products.items.map((product) => (
               <div
@@ -147,7 +147,7 @@ function HomeProduct() {
             size="large"
             sx={{
               "& .Mui-selected": {
-                backgroundColor: "#2A4178",
+                backgroundColor: "#FF6F00",
                 borderRadius: "25px",
                 color: "#ffffff",
                 fontSize: "20px",
@@ -170,7 +170,9 @@ function HomeProduct() {
 
                 borderRadius: "8px",
                 "&:hover": {
-                  backgroundColor: "#F0F0F0",
+                  backgroundColor: "#FF6F00",
+                  opacity: 0.6,
+                  color: "#ffffff",
                 },
               },
             }}

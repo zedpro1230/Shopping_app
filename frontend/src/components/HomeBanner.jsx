@@ -32,12 +32,15 @@ function HomeBanner() {
   }, []);
 
   return (
-    <div className="slider-container mt-[60px] mb-[20px] h-[700px]  w-[85%] mx-auto border border-[#e5e5e5] rounded-lg shadow-md border-solid">
+    <div
+      className="slider-container mt-[60px] mb-[20px] h-[900px]  w-[85%] mx-auto border border-[#e5e5e5] rounded-lg shadow-md border-solid
+     max-md:mt-[200px] max-md:h-[400px] max-xl:h-[600px] max-md:w-[95%]"
+    >
       <Slider {...settings} key={key}>
         {banners.map((banner, index) => (
           <div
             key={index}
-            className="  flex items-center justify-center rounded-lg h-[700px]"
+            className="  flex items-center justify-center rounded-lg h-[900px] max-md:h-[400px] max-xl:h-[600px] "
           >
             <img
               src={banner.image.url}

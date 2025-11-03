@@ -35,9 +35,11 @@ function NavBar() {
             <img
               src={
                 userInfo?.avatar.url ||
+                userInfo?.avatar ||
                 "https://static.vecteezy.com/system/resources/thumbnails/011/490/381/small_2x/happy-smiling-young-man-avatar-3d-portrait-of-a-man-cartoon-character-people-illustration-isolated-on-white-background-vector.jpg"
               }
               alt="Logo"
+              referrerPolicy="no-referrer"
               className="h-[50px] w-[50px] rounded-full object-cover border border-[#FF6F00] cursor-pointer"
               onClick={() => navigate("/user_profile")}
             />

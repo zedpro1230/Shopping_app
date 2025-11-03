@@ -15,11 +15,13 @@ import Cart from "./pages/Cart";
 import Category from "./pages/Category";
 import AdminOrder from "./pages/AdminOrder";
 import UserDetail from "./pages/UserDetail";
+import UserOrder from "./pages/UserOrder";
 import "./index.css";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setLogin, storeUserInfo } from "./features/counters/cartSlice";
 import { useSelector } from "react-redux";
+import Search from "./pages/Search";
 // Component to initialize auth state from localStorage
 
 function App() {
@@ -82,6 +84,9 @@ function App() {
             <Route path="/order" element={<OrderForm />} />
             <Route path="/category/:slug" element={<Category />} />
             <Route path="/user_profile" element={<UserDetail />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/user_orders" element={<UserOrder />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
           </Routes>
         </BannerProvider>
       </ItemsProvider>

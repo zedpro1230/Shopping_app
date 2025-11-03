@@ -9,15 +9,18 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useState } from "react";
 import backendHost from "../config/backendHost";
-
+import { useNavigate } from "react-router-dom";
 function UserDetail() {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.cart.userInfo);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [avatar, setAvatar] = useState(userInfo?.avatar?.url || "");
+  const [avatar, setAvatar] = useState(
+    userInfo?.avatar?.url || userInfo?.avatar || ""
+  );
   const [selectedFile, setSelectedFile] = useState(null);
   console.log(userInfo);
   const handleAvatarChange = (event) => {
@@ -74,36 +77,80 @@ function UserDetail() {
     }
   };
   return (
-    <div className="flex items-center justify-center bg-[#f4f2ee] min-h-screen  ">
-      <NavBar />
-      <div className="bg-white rounded-lg w-[30%]  mx-auto shadow-md flex   flex-col  ">
+    <div className="flex items-center justify-center bg-[#f4f2ee] min-h-screen  p-4 max-md:p-0">
+      <div className="bg-white rounded-lg w-[30%]  mx-auto shadow-md flex   flex-col gap-4 max-xl:w-[90%] max-md:mx-[0px]">
         <div className="bg-[#FF6A00]/80 h-[200px] rounded-t-lg relative w-full">
-          <div className="absolute translate-y-[20%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 justify-center">
-            <img
-              src={
-                userInfo?.avatar.url ||
-                "https://static.vecteezy.com/system/resources/thumbnails/011/490/381/small_2x/happy-smiling-young-man-avatar-3d-portrait-of-a-man-cartoon-character-people-illustration-isolated-on-white-background-vector.jpg"
-              }
-              alt="User Avatar"
-              className="h-[250px] w-[250px] rounded-full shadow-sm object-cover border-2 border-[white] "
-            />
-            <h3 className="text-xl text-[#424242] font-bold font-roboto">
-              Thông tin cá nhân
-            </h3>
+          <div
+            className="absolute translate-y-[40%] left-[20px]  flex flex-col items-start gap-2 justify-center w-[90%]
+          max-md:translate-y-[80%] max-md:left-[10px]"
+          >
+            <div className="border-3 border-white rounded-full overflow-hidden">
+              <img
+                src={
+                  userInfo?.avatar.url ||
+                  userInfo?.avatar ||
+                  "https://static.vecteezy.com/system/resources/thumbnails/011/490/381/small_2x/happy-smiling-young-man-avatar-3d-portrait-of-a-man-cartoon-character-people-illustration-isolated-on-white-background-vector.jpg"
+                }
+                alt="User Avatar"
+                referrerPolicy="no-referrer"
+                className="h-[150px] w-[150px] rounded-full  max-md:h-[100px] max-md:w-[100px] object-cover "
+              />
+            </div>
+            <div className="flex  gap-1 justify-between items-center w-full max-md:flex-col max-md:items-start">
+              <div className="flex flex-col gap-1">
+                <p className="text-xl font-semibold font-roboto text-[#424242]">
+                  {userInfo?.name}
+                </p>
+                <p className="text-sm font-medium font-roboto text-gray-500 ">
+                  {userInfo?.email}
+                </p>
+              </div>
+
+              <button
+                className="bg-[#FF6A00]/80 text-white cursor-pointer px-4 py-2 rounded-[25px] 
+          flex items-center gap-2  hover:bg-[#FF6A00] transition-colors duration-200"
+                onClick={handleOpen}
+              >
+                <IconContext.Provider
+                  value={{
+                    className: "size-[20px] fill-white",
+                  }}
+                >
+                  <FaEdit />
+                </IconContext.Provider>
+                cập nhật thông tin
+              </button>
+            </div>
           </div>
         </div>
-        <div className="mt-[180px] px-[20px] flex flex-col gap-4  ">
-          <p className="text-lg font-semibold font-roboto text-[#424242]">
-            Tên : {userInfo?.name}
-          </p>
-          <p className="text-lg font-semibold font-roboto text-[#424242]">
-            Email: {userInfo?.email}
-          </p>
-          <p className="text-lg font-semibold font-roboto text-[#424242]">
-            Loại tài khoản: {userInfo?.role}
-          </p>
+        <div className="mt-[130px] px-[20px] flex flex-col gap-4  max-md:mt-[200px]">
+          <div className="w-full rounded-lg border-1 p-5 border-gray-300 relative">
+            <span className="w-max bg-white absolute -top-3 left-4 px-2">
+              Tên
+            </span>
+            <p className="text-lg font-semibold font-roboto text-[#424242]">
+              {userInfo?.name}
+            </p>
+          </div>
+
+          <div className="w-full rounded-lg border-1 p-5 border-gray-300 relative break-all">
+            <span className=" bg-white absolute -top-3 left-4 px-2 ">
+              Email
+            </span>
+            <p className="text-lg font-semibold font-roboto text-[#424242]">
+              {userInfo?.email}
+            </p>
+          </div>
+          <div className="w-full rounded-lg border-1 p-5 border-gray-300 relative">
+            <span className="w-max bg-white absolute -top-3 left-4 px-2">
+              Cấp độ
+            </span>
+            <p className="text-lg font-semibold font-roboto text-[#424242]">
+              {userInfo?.role}
+            </p>
+          </div>
         </div>
-        <div className="flex w-full items-center justify-between px-[20px] mb-5">
+        <div className="flex w-full items-center justify-between px-[20px] mb-5 max-md:flex-col max-md:gap-4 max-md:items-start">
           <div className="rounded-lg flex   py-2">
             <p className="text-lg font-semibold font-roboto text-[#424242]">
               Trạng thái:{" "}
@@ -112,20 +159,7 @@ function UserDetail() {
               </span>
             </p>
           </div>
-          <button
-            className="bg-[#FF6A00]/80 text-white cursor-pointer px-4 py-2 rounded-md 
-          flex items-center gap-2  hover:bg-[#FF6A00] transition-colors duration-200"
-            onClick={handleOpen}
-          >
-            <IconContext.Provider
-              value={{
-                className: "size-[20px] fill-white",
-              }}
-            >
-              <FaEdit />
-            </IconContext.Provider>
-            cập nhật thông tin
-          </button>
+
           <Modal
             open={open}
             onClose={handleClose}
@@ -135,7 +169,7 @@ function UserDetail() {
               justifyContent: "center",
             }}
           >
-            <div className="bg-white p-4 rounded-lg shadow-lg outline-none w-[30%] flex flex-col items-center">
+            <div className="bg-white p-4 rounded-lg shadow-lg outline-none w-[30%] flex flex-col items-center max-xl:w-[90%]">
               <h2 className="text-xl text-[#424242] font-bold font-roboto">
                 Cập nhật thông tin
               </h2>
@@ -158,7 +192,8 @@ function UserDetail() {
                   <img
                     src={avatar}
                     alt="User Avatar..."
-                    className="h-[200px] w-[200px] rounded-[50%] object-cover "
+                    referrerPolicy="no-referrer"
+                    className="h-[200px] w-[200px] rounded-[50%] object-cover max-xl:h-[150px] max-xl:w-[150px]"
                   />
                 </label>
                 <label className="mt-4 w-full">
@@ -223,6 +258,12 @@ function UserDetail() {
               </form>
             </div>
           </Modal>
+          <p
+            className="text-lg font-medium text-gray-500 hover:underline cursor-pointer hover:text-[#FF6A00]"
+            onClick={() => navigate(-1)}
+          >
+            Quay về trang trước
+          </p>
         </div>
       </div>
     </div>

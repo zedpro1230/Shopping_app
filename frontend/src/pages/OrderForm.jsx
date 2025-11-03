@@ -6,9 +6,10 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import {
   storeItem,
-  totalAmount,
   totalQuantity,
+  totalAmount,
 } from "../features/counters/cartSlice";
+import { useNavigate } from "react-router-dom";
 import backendHost from "../config/backendHost";
 import axios from "axios";
 function OrderForm() {
@@ -23,14 +24,15 @@ function OrderForm() {
     defaultValues: { city: "" },
   });
   const cartItems = useSelector((state) => state.cart.items);
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
+  const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
   const userInfo = useSelector((state) => state.cart.userInfo);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
     const orderDetails = {
       ...data,
       cartItems,
-      totalAmount,
+      totalAmount: cartTotalAmount,
       userId: userInfo?._id || userInfo?.id,
     };
 
@@ -43,6 +45,7 @@ function OrderForm() {
       if (response.status === 201) {
         toast.success("Order placed successfully!", {
           position: "top-right",
+          autoClose: 900,
         });
         // Clear cart after successful order
         dispatch(storeItem([]));
@@ -55,6 +58,10 @@ function OrderForm() {
           address: "",
           note: "",
         });
+        // Redirect to home or order confirmation page after a short delay
+        setTimeout(() => {
+          navigate("/home");
+        }, 1000);
       }
     } catch (error) {
       const errorMessage =
@@ -84,15 +91,17 @@ function OrderForm() {
       <UserNavBar />
       <ToastContainer />
       <div className="w-[60%] mx-auto bg-white p-8 rounded-lg shadow-md text-[#424242]">
-        <h1 className="text-3xl font-bold mb-5">Điền thông tin người đặt</h1>
+        <h1 className="text-3xl font-bold mb-5 max-md:text-2xl">
+          Điền thông tin đặt hàng
+        </h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="w-full flex flex-col gap-2 h-full "
         >
-          <div className="flex flex-row gap-3 ">
+          <div className="flex flex-row gap-3 max-lg:flex-col">
             <label className="flex flex-col flex-1 font-roboto text-[#2A4178]">
               <div className="flex items-center gap-1">
-                <span className="text-xl font-bold text-[#424242]">
+                <span className="text-xl font-bold text-[#424242] max-md:text-lg">
                   Tên người đặt
                 </span>
                 <span className="text-xl text-red-500">*</span>
@@ -101,10 +110,10 @@ function OrderForm() {
                 type="text"
                 className="border cursor-pointer border-gray-300 p-2 h-[50px] text-lg rounded-lg w-full mb-4 text-[#424242] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                 {...register("userName", {
-                  required: "Please enter a user name",
+                  required: "Yêu cầu nhập tên người dùng",
                   maxLength: {
                     value: 50,
-                    message: "User name should not exceed 50 characters",
+                    message: "Tên người dùng giới hạn trong 50 ký tự",
                   },
                 })}
               />
@@ -114,8 +123,8 @@ function OrderForm() {
             </label>
             <label className="flex flex-col flex-1 font-roboto text-[#424242]">
               <div className="flex items-center gap-1">
-                <span className="text-xl font-bold text-[#424242]">
-                  Phone number
+                <span className="text-xl font-bold text-[#424242] max-md:text-lg">
+                  Số điện thoại
                 </span>
                 <span className="text-xl text-red-500">*</span>
               </div>
@@ -123,10 +132,10 @@ function OrderForm() {
                 type="text"
                 className="border cursor-pointer border-gray-300 p-2 h-[50px] text-lg rounded-lg w-full mb-4 text-[#424242] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                 {...register("phoneNumber", {
-                  required: "Please enter a phone number",
+                  required: "Yêu cầu nhập số điện thoại",
                   pattern: {
                     value: /^[0-9]+$/,
-                    message: "Please enter a valid phone number",
+                    message: "Vui lòng nhập số điện thoại hợp lệ",
                   },
                 })}
               />
@@ -137,10 +146,10 @@ function OrderForm() {
               )}
             </label>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-3 max-lg:flex-col-reverse">
             <label className="flex flex-col flex-1/4 font-roboto text-[#424242]">
               <div className="flex items-center gap-1">
-                <span className="text-xl font-bold text-[#424242]">
+                <span className="text-xl font-bold text-[#424242] max-md:text-lg">
                   Thành phố
                 </span>
                 <span className="text-xl text-red-500">*</span>
@@ -150,7 +159,7 @@ function OrderForm() {
                 inputProps={{ "aria-hidden": false }}
                 className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                 {...register("city", {
-                  required: "Please select a city",
+                  required: "Vui lòng chọn thành phố",
                 })}
                 defaultValue=""
               >
@@ -170,7 +179,7 @@ function OrderForm() {
             </label>
             <label className="flex flex-col flex-3/4 font-roboto text-[#424242]">
               <div className="flex items-center gap-1">
-                <span className="text-xl font-bold text-[#424242]">
+                <span className="text-xl font-bold text-[#424242] max-md:text-lg">
                   Địa chỉ
                 </span>
                 <span className="text-xl text-red-500">*</span>
@@ -179,10 +188,10 @@ function OrderForm() {
                 type="text"
                 className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                 {...register("address", {
-                  required: "Please enter your address",
+                  required: "Vui lòng nhập địa chỉ",
                   maxLength: {
                     value: 200,
-                    message: "Đia chỉ không được vượt quá 200 ký tự",
+                    message: "Địa chỉ không được vượt quá 200 ký tự",
                   },
                 })}
               />
@@ -196,6 +205,7 @@ function OrderForm() {
             <textarea
               placeholder="Nhập ghi chú của bạn ở đây nếu có..."
               className="border cursor-pointer border-gray-300 p-2 h-[200px] resize-none text-lg rounded-lg w-full mb-4 text-[#424242] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+              {...register("note")}
             />
           </label>
           <button

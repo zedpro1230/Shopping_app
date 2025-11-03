@@ -7,9 +7,9 @@ import { IconContext } from "react-icons/lib";
 
 function Footer() {
   return (
-    <footer className="bg-[#424242]">
+    <footer className="bg-[#424242] flex  ">
       <div className="flex flex-col gap-2   p-2 w-[85%] mx-auto justify-center items-center mt-10">
-        <div className="flex justify-between w-full ">
+        <div className="flex justify-between w-full max-md:flex-col">
           <div className="flex flex-col mt-[20px]  px-5">
             <h2 className=" font-bold mb-2 font-roboto text-3xl text-white">
               LUSHOP
