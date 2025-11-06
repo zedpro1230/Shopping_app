@@ -159,12 +159,12 @@ function UserNavBar() {
               Đăng Nhập
             </button>
 
-            <button
+            {/* <button
               className="text-[#FF6F00] rounded-lg bg-white p-2 border text-xl border-[#FF6F00] font-medium font-roboto  
             transition-colors cursor-pointer max-md:text-lg"
             >
               Đăng Ký
-            </button>
+            </button> */}
           </div>
         ) : (
           <div className="flex max-md:self-end">
