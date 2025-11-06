@@ -102,13 +102,16 @@ function ProductViewModal({ open, onClose, productId }) {
           justifyContent: "center",
         }}
       >
-        <div className="bg-white w-[90%] h-[90%] overflow-y-scroll rounded-2xl flex flex-col items-center justify-start p-6">
+        <div
+          className="bg-white w-[90%] h-[90%] overflow-y-scroll rounded-2xl flex flex-col items-center justify-start p-6
+        "
+        >
           {product && (
-            <div className="flex gap-4 p-4 w-full">
+            <div className="flex gap-4 p-4 w-full max-xl:flex-col max-xl:items-center max-xl:justify-center">
               <div>
                 <Slider
                   {...getSliderSettings()}
-                  className="w-[500px] rounded-lg"
+                  className="w-[500px] rounded-lg max-xl:w-[300px] "
                 >
                   {product?.image &&
                   Array.isArray(product.image) &&
@@ -121,7 +124,7 @@ function ProductViewModal({ open, onClose, productId }) {
                         <img
                           src={img?.url || "https://via.placeholder.com/500"}
                           alt={product.title || "Product Image"}
-                          className="w-full h-[500px] object-cover rounded-lg"
+                          className="w-full h-[500px] object-cover rounded-lg max-xl:h-[300px]"
                         />
                       </div>
                     ))
@@ -137,8 +140,8 @@ function ProductViewModal({ open, onClose, productId }) {
                 </Slider>
               </div>
 
-              <div className="w-full flex flex-col gap-4">
-                <h2 className="text-2xl font-roboto font-bold break-all text-[#424242]">
+              <div className="w-full flex flex-col gap-4 max-xl:gap-1">
+                <h2 className="text-2xl font-roboto font-bold break-all text-[#424242] max-md:text-xl">
                   {product.title}
                 </h2>
                 <Rating
@@ -148,30 +151,30 @@ function ProductViewModal({ open, onClose, productId }) {
                   readOnly
                   size="large"
                 />
-                <div className="flex gap-5 items-center  p-4 rounded-lg h-[100px]">
-                  <p className="text-[28px] font-roboto font-semibold text-[#FF6100]">
+                <div className="flex gap-5 items-center  py-4 pr-4 rounded-lg h-[100px] max-md:flex-wrap ">
+                  <p className="text-[28px] font-roboto font-semibold text-[#FF6100] max-md:text-xl">
                     {Math.round(
                       product.price - (product.price * product.discount) / 100
                     ).toLocaleString("de-VN")}
                     đ
                   </p>
-                  <p className="text-xl font-roboto font-bold line-through text-black/50">
+                  <p className="text-xl font-roboto font-bold line-through text-black/50 max-md:text-xl">
                     {product.price.toLocaleString("de-VN")}đ
                   </p>
-                  <p className="text-xl font-roboto font-bold bg-[#FF6100] text-white  px-2 py-1 rounded-md">
+                  <p className="text-xl font-roboto font-bold bg-[#FF6100] text-white  px-2 py-1 rounded-md max-md:text-xl">
                     -{product.discount}%
                   </p>
                 </div>
                 <div className="flex gap-4 items-center">
-                  <span className="text-xl text-[#424242] font-roboto font-bold">
+                  <span className="text-xl text-[#424242] font-roboto font-bold max-md:text-lg">
                     Trạng thái:
                   </span>
                   {product.stock > 0 ? (
-                    <span className="text-[18px] font-roboto font-bold bg-green-600/80 text-white px-2 py-1 rounded-md">
+                    <span className="text-[18px] font-roboto font-bold bg-green-600/80 text-white px-2 py-1 rounded-md max-md:text-[16px] ">
                       Còn hàng
                     </span>
                   ) : (
-                    <span className="text-[18px] font-roboto font-bold bg-red-600/80 text-white px-2 py-1 rounded-md">
+                    <span className="text-[18px] font-roboto font-bold bg-red-600/80 text-white px-2 py-1 rounded-md max-md:text-[16px] ">
                       Hết hàng
                     </span>
                   )}
@@ -222,32 +225,32 @@ function ProductViewModal({ open, onClose, productId }) {
             </Tabs>
             {tabIndex === 0 ? (
               <div className="mt-8 bg-white rounded-lg w-full flex flex-col border-solid border-1 border-[#e5e5e5]">
-                <h2 className="text-[24px] font-roboto font-bold p-4">
+                <h2 className="text-[24px] font-roboto font-bold p-4 max-md:text-xl text-[#424242]">
                   Mô tả sản phẩm
                 </h2>
                 <div className="text-[18px] font-roboto font-normal p-4 text-justify break-all">
                   {product && (
-                    <div className="flex flex-col gap-4">
-                      <div>
-                        <div className="flex gap-10 mb-2 justify-between w-[300px]">
-                          <span className="text-gray-500 font-roboto font-bold">
+                    <div className="flex flex-col gap-6">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex gap-10 mb-2 justify-between w-[300px] max-xl:flex-col max-xl:gap-1">
+                          <span className="text-gray-500 font-roboto font-bold max-md:text-[16px]">
                             Danh mục
                           </span>
-                          <span className="font-roboto font-bold text-[#424242]">
+                          <span className="font-roboto font-bold text-[#424242] max-md:text-[14px]">
                             {product.category.categoryTitle}
                           </span>
                         </div>
 
-                        <div className="flex gap-10 mb-2 justify-between w-[300px]">
-                          <span className="text-gray-500 font-roboto font-bold">
+                        <div className="flex gap-10 mb-2 justify-between w-[300px] max-xl:flex-col max-xl:gap-1">
+                          <span className="text-gray-500 font-roboto font-bold max-md:text-[16px]">
                             Nơi bán
                           </span>
-                          <span className="font-roboto font-bold text-[#424242]">
+                          <span className="font-roboto font-bold text-[#424242] max-md:text-[14px]">
                             {product.city}
                           </span>
                         </div>
                       </div>
-                      <p className="break-all text-[#424242]">
+                      <p className="break-all text-[#424242] max-md:text-[16px]">
                         {product.description}
                       </p>
                     </div>
@@ -256,7 +259,7 @@ function ProductViewModal({ open, onClose, productId }) {
               </div>
             ) : (
               <div className="mt-8 bg-white rounded-lg w-full flex flex-col border-solid border-1 border-[#e5e5e5]">
-                <h2 className="text-2xl text-[#424242] font-roboto font-bold p-4">
+                <h2 className="text-2xl text-[#424242] font-roboto font-bold p-4 max-md:text-xl">
                   Bình luận
                 </h2>
                 <div className="p-4 flex flex-col gap-4">
@@ -272,11 +275,11 @@ function ProductViewModal({ open, onClose, productId }) {
                             <img
                               src={cmt.userId.avatar}
                               alt="User Avatar"
-                              className="w-[50px] h-[50px] rounded-full"
+                              className="w-[50px] h-[50px] rounded-full max-md:w-[35px] max-md:h-[35px]"
                               referrerPolicy="no-referrer"
                             />
                             <div className="flex flex-col">
-                              <span className="font-roboto font-bold text-[18px] ">
+                              <span className="font-roboto font-bold text-[18px] max-md:text-[16px] text-[#424242]">
                                 {cmt.userId.name}
                               </span>
                               <Rating
@@ -291,7 +294,7 @@ function ProductViewModal({ open, onClose, productId }) {
                               </span>
                             </div>
                           </div>
-                          <p className="font-roboto font-normal text-lg break-all text-[#424242]">
+                          <p className="font-roboto font-normal text-lg break-all text-[#424242] max-md:text-[16px]">
                             {cmt.commentText}
                           </p>
                         </div>

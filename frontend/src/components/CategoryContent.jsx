@@ -65,12 +65,12 @@ function CategoryContent() {
   };
   return (
     <div>
-      <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center font-roboto">
+      <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center font-roboto max-md:flex-col max-md:gap-4">
         <h1 className="text-2xl font-bold font-roboto text-[#2A4178]">
           Quản lý danh mục
         </h1>
         ,
-        <div className="flex gap-5">
+        <div className="flex gap-5 max-xl:flex-col max-xl:items-center">
           <div className="flex items-center gap-2 text-[#2A4178]">
             <span className="bg-gray-200 px-5 py-1 rounded-[25px] font-semibold font-roboto">
               Bảng điều khiển
@@ -81,7 +81,7 @@ function CategoryContent() {
             </span>
           </div>
           <button
-            className="bg-blue-500 text-white p-4 font-bold font-roboto rounded-[12px] cursor-pointer hover:bg-blue-600 transition-colors"
+            className="bg-[#FF6F00] text-white p-4 font-bold font-roboto rounded-[12px] cursor-pointer hover:bg-[#FF8F00] transition-colors"
             onClick={() => {
               handleOpen();
             }}
@@ -90,12 +90,12 @@ function CategoryContent() {
           </button>
         </div>
       </div>
-      <div className="bg-white rounded-lg shadow-md  mt-4 p-4 gap-5  grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] ">
+      <div className="bg-white rounded-lg shadow-md  mt-4 p-4 gap-5  grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] ">
         {categories.map((category) => (
           <div
             key={category._id}
-            className={`p-4 border border-gray-200  shadow-md rounded-lg  min-w-[300px]  bg-gradient-to-r from-[#F8FAFF] to-transparent flex justify-between items-center
-            transition-transform duration-300 hover:translate-y-[-5px]`}
+            className={`p-4 border border-gray-200  shadow-md rounded-lg  min-w-[200px]  bg-gradient-to-r from-[#F8FAFF] to-transparent flex justify-between items-center
+            transition-transform duration-300 hover:translate-y-[-5px] max-md:flex-col-reverse max-md:gap-4 max-md:p-2`}
           >
             <div className="flex items-center gap-4 flex-col">
               <p className="text-[20px] font-roboto font-bold text-[#222222]">
@@ -108,11 +108,14 @@ function CategoryContent() {
               />
             </div>
 
-            <span onClick={() => handleDelete(category._id)}>
+            <span
+              onClick={() => handleDelete(category._id)}
+              className="self-end"
+            >
               <IconContext.Provider
                 value={{
                   className:
-                    "fill-[#2A4178] cursor-pointer size-[40px] transition-colors ease-in-out duration-300 hover:fill-[#FB4141]",
+                    "fill-[#2A4178] cursor-pointer size-[40px] transition-colors ease-in-out duration-300 hover:fill-[#FB4141] ",
                 }}
               >
                 <MdDeleteForever />

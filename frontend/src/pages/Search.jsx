@@ -80,7 +80,7 @@ function Search() {
         <h2 className="text-2xl font-bold mb-4">
           Kết quả tìm kiếm cho "{query}"
         </h2>
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-10">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-10">
           {results.length > 0 &&
             results.map((product) => (
               <div
@@ -136,7 +136,7 @@ function Search() {
                     <IconContext.Provider
                       value={{
                         className:
-                          "fill-white group-hover:fill-[#FF6100] transition-colors duration-200",
+                          "fill-white group-hover:fill-[#FF6100] transition-colors duration-200 max-md:scale-75",
                       }}
                     >
                       <BsCart2 size={25} />

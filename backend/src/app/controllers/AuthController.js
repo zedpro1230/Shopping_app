@@ -26,7 +26,7 @@ class AuthController {
         return res.status(201).json({ data: user, token: token });
       }
     } catch (error) {
-      return res.status(500).json({ content: "Internal server error" });
+      return res.status(500).json({ content: "lỗi server" });
     }
   }
 
@@ -43,13 +43,17 @@ class AuthController {
       // Find user by email
       const user = await User.findOne({ email });
       if (!user) {
-        return res.status(401).json({ content: "Invalid email or password" });
+        return res
+          .status(401)
+          .json({ content: "Email hoặc mật khẩu không hợp lệ" });
       }
 
       // Check password
       const isPasswordValid = await byScrypt.compare(password, user.password);
       if (!isPasswordValid) {
-        return res.status(401).json({ content: "Invalid email or password" });
+        return res
+          .status(401)
+          .json({ content: "Email hoặc mật khẩu không hợp lệ" });
       }
 
       // Generate JWT token
@@ -66,7 +70,7 @@ class AuthController {
         token: token,
       });
     } catch (error) {
-      return res.status(500).json({ content: "Internal server error" });
+      return res.status(500).json({ content: "lỗi server" });
     }
   }
 }

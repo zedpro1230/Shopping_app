@@ -150,13 +150,13 @@ function ProductContent() {
   };
   return (
     <div>
-      <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center gap-2">
+      <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center gap-2 max-xl:flex-col">
         <h1 className="text-2xl font-bold font-roboto text-[#424242]">
           Quản lý sản phẩm
         </h1>
         ,
-        <div className="flex gap-5">
-          <div className="flex items-center gap-2 text-[#424242]">
+        <div className="flex gap-5 max-xl:flex-col max-xl:items-center">
+          <div className="flex items-center gap-2 text-[#424242] ">
             <span className="bg-gray-200 px-5 py-1 rounded-[25px] font-semibold font-roboto">
               Bảng điều khiển
             </span>
@@ -173,27 +173,27 @@ function ProductContent() {
           </button>
         </div>
       </div>
-      <div className="w-full bg-white rounded-lg  pb-4 mt-4 border border-gray-200 shadow-md overflow-x-scroll">
+      <div className="w-full bg-white  min-w-full rounded-lg  pb-4 mt-4 border border-gray-200 shadow-md overflow-x-scroll">
         {products.length > 0 ? (
           <table className="w-full bg-white  rounded-[16px]     shadow-xs">
             <thead className="p-2 bg-[#FFFFF0] text-[#424242] ">
               <tr>
-                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto min-w-[200px]">
                   Ảnh nền
                 </th>
-                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto min-w-[250px]">
                   Tên sản phẩm
                 </th>
-                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto min-w-[250px]">
                   Danh mục
                 </th>
-                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto min-w-[200px]">
                   Giá tiền
                 </th>
-                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto min-w-[200px]">
                   Tồn kho
                 </th>
-                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto">
+                <th className=" text-2xl text-left  h-[100px] pl-4 font-roboto pr-4 min-w-[300px]">
                   Thao tác
                 </th>
               </tr>
@@ -259,7 +259,7 @@ function ProductContent() {
                       </span>
                     )}
                   </td>
-                  <td className=" h-[200px] pl-4">
+                  <td className=" h-[200px] p-4">
                     <div className="flex gap-3">
                       <button
                         className="cursor-pointer bg-[#5EABD6]/30 p-4 text-[#5EABD6] rounded-lg flex items-center gap-2 font-roboto font-semibold
@@ -269,7 +269,7 @@ function ProductContent() {
                           setSelectedProductId(product._id);
                         }}
                       >
-                        Cập nhật
+                        <p className="max-xl:hidden">Sửa</p>
                         <IconContext.Provider
                           value={{ className: "size-[20px] fill-[#5EABD6]" }}
                         >
@@ -281,7 +281,7 @@ function ProductContent() {
                         hover:bg-[#E14434]/50 transition-colors"
                         onClick={() => handleDelete(product._id)}
                       >
-                        Xóa
+                        <p className="max-xl:hidden">Xóa</p>
                         <IconContext.Provider
                           value={{ className: "size-[20px] fill-[#E14434]" }}
                         >
@@ -297,7 +297,7 @@ function ProductContent() {
                           setSelectedViewProduct(product._id);
                         }}
                       >
-                        Chi tiết
+                        <p className="max-xl:hidden">Xem </p>
                         <IconContext.Provider
                           value={{ className: "size-[20px] fill-blue" }}
                         >
@@ -337,7 +337,7 @@ function ProductContent() {
         }}
       >
         <div className="bg-white w-[80%] h-[90%]  rounded-2xl flex flex-col items-center justify-start p-6 ">
-          <h2 className="text-2xl font-bold mb-4 text-[#2A4178]">
+          <h2 className="text-2xl font-bold mb-4 text-[#2A4178] max-md:text-xl">
             Sản phẩm mới
           </h2>
           <div className="w-full flex flex-col items-center h-full overflow-y-scroll p-2">
@@ -345,9 +345,11 @@ function ProductContent() {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full flex flex-col gap-2 h-full "
             >
-              <div className="flex flex-row gap-3 ">
+              <div className="flex flex-row gap-3 max-xl:flex-col">
                 <label className="flex flex-col flex-1 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Tên sản phẩm:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Tên sản phẩm:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
@@ -367,7 +369,9 @@ function ProductContent() {
                   )}
                 </label>
                 <label className="flex flex-col flex-1 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Giá thành:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Giá thành:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
@@ -385,9 +389,11 @@ function ProductContent() {
                   )}
                 </label>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-3 max-xl:flex-col">
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Tên danh mục:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Tên danh mục:
+                  </span>
                   <Controller
                     name="category"
                     control={control}
@@ -418,7 +424,9 @@ function ProductContent() {
                   )}
                 </label>
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Nơi bán:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Nơi bán:
+                  </span>
                   <Controller
                     name="city"
                     control={control}
@@ -447,7 +455,9 @@ function ProductContent() {
                   )}
                 </label>
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Giảm giá:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Giảm giá:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
@@ -467,7 +477,9 @@ function ProductContent() {
                   )}
                 </label>
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Số lượng:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Số lượng:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
@@ -487,7 +499,9 @@ function ProductContent() {
               </div>
 
               <label className="flex flex-col font-roboto text-[#2A4178]">
-                <span className="text-[20px] font-bold">Mô tả:</span>
+                <span className="text-[20px] font-bold max-md:text-[16px]">
+                  Mô tả:
+                </span>
                 <textarea
                   disabled={loading}
                   className="border cursor-pointer border-gray-300 p-2 h-[200px] resize-none text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
@@ -502,7 +516,9 @@ function ProductContent() {
                 )}
               </label>
               <label className="flex flex-col font-roboto text-[#2A4178]">
-                <span className="text-[20px] font-bold">Ảnh sản phẩm:</span>
+                <span className="text-[20px] font-bold max-md:text-[16px]">
+                  Ảnh sản phẩm:
+                </span>
                 <div className="border border-gray-300 p-2 gap-3 text-[20px] rounded-lg w-full mb-4 text-[#2A4178] flex flex-col">
                   <input
                     type="file"
@@ -526,12 +542,15 @@ function ProductContent() {
                       },
                     })}
                     onChange={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
                       handleImageChange(e.target.files);
                     }}
                   />
                   <label
                     htmlFor="posterInput"
-                    className=" text-blue-500 px-4 py-2 rounded cursor-pointer text-center  font-roboto font-bold "
+                    className=" text-[#FF6400] px-4 py-2 rounded cursor-pointer text-center  font-roboto font-bold
+                    max-md:text-[16px]  "
                   >
                     Tải lên ảnh
                   </label>
@@ -564,7 +583,7 @@ function ProductContent() {
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-500 w-full cursor-pointer place-content-end flex justify-center items-center  text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-600 transition-colors"
+                className="bg-[#FF6400] w-full cursor-pointer place-content-end flex justify-center items-center  text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-600 transition-colors"
               >
                 {loading ? <Loading /> : "Thêm sản phẩm"}
               </button>

@@ -26,11 +26,14 @@ function NavBar() {
   };
   return (
     <div>
-      <nav className="bg-[#FFFFFF] shadow-md fixed z-10 top-0 left-0 right-0 h-[80px] flex p-2 justify-between items-center px-8 py-2">
-        <h1 className="text-3xl font-bold font-roboto text-[#FF6F00] cursor-pointer">
+      <nav
+        className="bg-[#FFFFFF] shadow-md fixed z-10 top-0 left-0 right-0 h-[80px] flex p-2 
+      justify-between items-center px-8 py-2 max-xl:flex-col max-xl:h-[120px] max-xl:gap-2 max-xl:px-4"
+      >
+        <h1 className="text-3xl font-bold font-roboto text-[#FF6F00] cursor-pointer max-xl:self-start max-md:text-2xl">
           LUSHOP
         </h1>
-        <div>
+        <div className="max-xl:self-end">
           <div className="flex items-center gap-3">
             <img
               src={
@@ -40,14 +43,15 @@ function NavBar() {
               }
               alt="Logo"
               referrerPolicy="no-referrer"
-              className="h-[50px] w-[50px] rounded-full object-cover border border-[#FF6F00] cursor-pointer"
+              className="h-[50px] w-[50px] rounded-full object-cover border border-[#FF6F00] cursor-pointer
+              max-md:h-[35px] max-md:w-[35px]"
               onClick={() => navigate("/user_profile")}
             />
             <div className=" flex flex-col items-start justify-center">
-              <p className="text-lg font-roboto text-[#424242]">
+              <p className="text-lg font-roboto text-[#424242] max-md:text-[16px] font-bold">
                 {userInfo?.name || "User Name"}
               </p>
-              <p className="text-sm font-roboto text-[#424242]">
+              <p className="text-sm font-roboto text-[#424242] max-md:text-[14px]">
                 {userInfo?.email || "Email"}
               </p>
             </div>

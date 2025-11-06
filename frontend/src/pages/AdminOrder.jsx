@@ -55,11 +55,11 @@ function AdminOrder() {
     }
   };
   return (
-    <div className="flex   mt-[85px] justify-between font-roboto  ">
+    <div className="flex   mt-[85px] justify-between font-roboto max-xl:flex-col">
       <NavBar />
       <SideBar />
-      <section className=" w-[85%] flex-1 p-2">
-        <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center font-roboto">
+      <section className=" w-[85%] flex-1 p-2 max-xl:w-full">
+        <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center font-roboto max-xl:flex-col max-xl:gap-4">
           <h1 className="text-2xl font-bold font-roboto text-[#424242]">
             Quản lý đơn hàng
           </h1>
@@ -230,7 +230,7 @@ function AdminOrder() {
             alignItems: "center",
           }}
         >
-          <div className="bg-white p-6 rounded-lg shadow-lg  w-[30%] flex flex-col gap-4">
+          <div className="bg-white p-6 rounded-lg shadow-lg  w-[30%] flex flex-col gap-4 max-xl:w-[80%]">
             <h2 className="text-2xl font-bold font-roboto mb-4 text-[#424242]">
               Chi tiết đơn hàng
             </h2>
@@ -274,7 +274,7 @@ function AdminOrder() {
                 ))}
               </ul>
             </div>
-            <div className="flex items-center gap-2 justify-between w-full">
+            <div className="flex items-center gap-2 justify-between w-full max-md:flex-col max-md:items-start">
               <p className="text-lg text-[#424242] font-roboto font-bold">
                 Mã đơn hàng:{" "}
               </p>
@@ -282,7 +282,7 @@ function AdminOrder() {
                 {orderDetails.id}
               </p>
             </div>
-            <div className="flex items-center gap-2 justify-between ">
+            <div className="flex items-center gap-2 justify-between max-md:flex-col max-md:items-start">
               <p className="font-roboto text-[#424242] text-lg font-bold ">
                 Ngày đặt:{" "}
               </p>
@@ -290,7 +290,7 @@ function AdminOrder() {
                 {new Date(orderDetails.orderDate).toLocaleDateString("vi-VN")}
               </p>
             </div>
-            <div className="flex items-center gap-2 justify-between ">
+            <div className="flex items-center gap-2 justify-between max-md:flex-col max-md:items-start">
               <p className="font-roboto text-[#424242] text-lg font-bold ">
                 Tổng tiền:{" "}
               </p>

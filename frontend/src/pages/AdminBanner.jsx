@@ -4,7 +4,7 @@ import BannerHeader from "../components/BannerHeader";
 import BannerBody from "../components/BannerBody";
 function AdminBanner() {
   return (
-    <div className="flex   mt-[85px] justify-start font-roboto ">
+    <div className="flex   mt-[85px] justify-start font-roboto max-xl:flex-col">
       <NavBar />
       <SideBar />
       <section className=" w-full flex-1 p-2">

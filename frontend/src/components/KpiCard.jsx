@@ -116,14 +116,14 @@ function KpiCard() {
   const kpiData = useMemo(() => {
     return [
       {
-        name: "TotalUsers",
+        name: "Số Người Dùng",
         number: users?.users?.length || 0,
         color1: "#6BAAFC",
         color2: "#305FEC",
         icon: <FaRegUserCircle />,
       },
       {
-        name: "TotalProducts",
+        name: "Tổng Sản Phẩm",
         number: products?.data?.totalProducts || 0,
         color1: "#EF5E7A",
         color2: "#D35385",
@@ -131,14 +131,14 @@ function KpiCard() {
       },
 
       {
-        name: "TotalOrders",
+        name: "Số lượng Đơn Hàng",
         number: orders?.data?.length || 0,
         color1: "#A530F2",
         color2: "#EF5E7A",
         icon: <FaListUl />,
       },
       {
-        name: "TotalSales",
+        name: "Tổng Doanh Thu",
         number: sales || 0,
         color1: "#D623FE",
         color2: "#A530F2",

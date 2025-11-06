@@ -145,23 +145,25 @@ function ProductUpdateModal({
           justifyContent: "center",
         }}
       >
-        <div className="bg-white w-[80%] h-[90%]  rounded-2xl flex flex-col items-center justify-start p-6 ">
-          <h2 className="text-2xl font-bold mb-4 text-[#2A4178]">
-            Update product
+        <div className="bg-white w-[80%] h-[90%]  rounded-2xl flex flex-col items-center justify-start p-6 max-xl:w-[90%]">
+          <h2 className="text-2xl font-bold mb-4 text-[#2A4178] max-md:text-xl">
+            Sửa sản phẩm
           </h2>
           <div className="w-full flex flex-col items-center h-full overflow-y-scroll p-2">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="w-full flex flex-col gap-2 h-full "
             >
-              <div className="flex flex-row gap-3 ">
+              <div className="flex flex-row gap-3 max-xl:flex-col">
                 <label className="flex flex-col flex-1 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Product Name:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Tên sản phẩm:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
                     defaultValue={product?.title}
-                    className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                    className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500 max-md:text-[16px] "
                     {...register("productName", {
                       required: "Please enter a product name",
                       maxLength: {
@@ -177,12 +179,14 @@ function ProductUpdateModal({
                   )}
                 </label>
                 <label className="flex flex-col flex-1 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Price:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Giá sản phẩm:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
                     defaultValue={product?.price}
-                    className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                    className="border cursor-pointer border-gray-300 p-2 h-[50px] max-md:text-[16px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                     {...register("price", {
                       required: "Please enter a price",
                       pattern: {
@@ -196,9 +200,11 @@ function ProductUpdateModal({
                   )}
                 </label>
               </div>
-              <div className="flex gap-3">
+              <div className="flex gap-3 max-xl:flex-col">
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Category Name:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Tên danh mục:
+                  </span>
                   <Controller
                     name="category"
                     control={control}
@@ -209,7 +215,7 @@ function ProductUpdateModal({
                         inputProps={{ "aria-hidden": false }}
                         disabled={loading}
                         value={field.value || ""}
-                        className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                        className="border cursor-pointer border-gray-300 p-2 max-md:text-[16px] h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                         onChange={(e) => {
                           field.onChange(e.target.value);
                           console.log("Category changed to:", e.target.value);
@@ -234,7 +240,9 @@ function ProductUpdateModal({
                   )}
                 </label>
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">City Name:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Tên thành phố:
+                  </span>
                   <Controller
                     name="city"
                     control={control}
@@ -245,7 +253,7 @@ function ProductUpdateModal({
                         inputProps={{ "aria-hidden": false }}
                         disabled={loading}
                         value={field.value || ""}
-                        className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                        className="border cursor-pointer border-gray-300 p-2 h-[50px]  max-md:text-[16px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                         onChange={(e) => {
                           field.onChange(e.target.value);
                           console.log("City changed to:", e.target.value);
@@ -268,17 +276,19 @@ function ProductUpdateModal({
                   )}
                 </label>
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Discount:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Giảm giá:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
                     defaultValue={product?.discount}
-                    className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                    className="border cursor-pointer border-gray-300 p-2 h-[50px] max-md:text-[16px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                     {...register("discount", {
                       required: "Please enter a discount",
                       pattern: {
                         value: /^(100|[1-9][0-9]?|0)$/,
-                        message: "Please enter a valid discount (1-100)",
+                        message: "Vui lòng nhập số từ 0 đến 100",
                       },
                     })}
                   />
@@ -289,17 +299,19 @@ function ProductUpdateModal({
                   )}
                 </label>
                 <label className="flex flex-col flex-1/4 font-roboto text-[#2A4178]">
-                  <span className="text-[20px] font-bold">Quantity:</span>
+                  <span className="text-[20px] font-bold max-md:text-[16px]">
+                    Số lượng:
+                  </span>
                   <input
                     type="text"
                     disabled={loading}
                     defaultValue={product?.stock}
-                    className="border cursor-pointer border-gray-300 p-2 h-[50px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                    className="border cursor-pointer border-gray-300 p-2 h-[50px] max-md:text-[16px] text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                     {...register("stock", {
                       required: "Please enter a stock quantity",
                       pattern: {
                         value: /^[0-9]+(\.[0-9]{1,2})?$/,
-                        message: "Please enter a valid stock quantity",
+                        message: "Vui lòng nhập số lượng hợp lệ",
                       },
                     })}
                   />
@@ -310,11 +322,13 @@ function ProductUpdateModal({
               </div>
 
               <label className="flex flex-col font-roboto text-[#2A4178]">
-                <span className="text-[20px] font-bold">Description:</span>
+                <span className="text-[20px] font-bold max-md:text-[16px]">
+                  Mô tả:
+                </span>
                 <textarea
                   disabled={loading}
                   defaultValue={product?.description}
-                  className="border cursor-pointer border-gray-300 p-2 h-[200px] resize-none text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+                  className="border cursor-pointer border-gray-300 max-md:text-[16px] p-2 h-[200px] resize-none text-[20px] rounded-lg w-full mb-4 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
                   {...register("description", {
                     required: "Please enter a description",
                   })}
@@ -326,7 +340,9 @@ function ProductUpdateModal({
                 )}
               </label>
               <label className="flex flex-col font-roboto text-[#2A4178]">
-                <span className="text-[20px] font-bold">Posters:</span>
+                <span className="text-[20px] font-bold max-md:text-[16px]">
+                  Ảnh minh họa:
+                </span>
                 <div className="border border-gray-300 p-2 gap-3 text-[20px] rounded-lg w-full mb-4 text-[#2A4178] flex flex-col">
                   <input
                     type="file"
@@ -356,24 +372,25 @@ function ProductUpdateModal({
                   />
                   <label
                     htmlFor="posterInput"
-                    className=" text-blue-500 px-4 py-2 rounded cursor-pointer text-center  font-roboto font-bold "
+                    className=" text-[#FF6400] px-4 py-2 rounded cursor-pointer text-center max-md:text-[16px]  font-roboto font-bold "
                   >
-                    Upload Images
+                    Tải lên ảnh
                   </label>
                 </div>
               </label>
-              <div className="flex flex-wrap font-roboto text-[#2A4178]">
+              <div className="flex flex-wrap font-roboto text-[#2A4178] gap-3">
                 {posters.map((poster, index) => (
                   <div className="relative" key={index}>
                     <img
                       src={poster.url || poster.preview}
                       alt={`Poster ${index + 1}`}
-                      className="h-[200px] w-[200px] object-cover rounded-lg mr-2 mb-2"
+                      className="h-[200px] w-[200px] object-cover rounded-lg mr-2 mb-2
+                      max-md:h-[100px] max-md:w-[100px]"
                     />
                     <IconContext.Provider
                       value={{
                         className:
-                          "absolute top-0 right-0 text-red-500 size-[24px]",
+                          "absolute top-[-10px] right-[-10px] text-red-500 size-[24px] max-md:size-[30px] cursor-pointer",
                       }}
                     >
                       <TiDelete onClick={() => handleRemovePoster(index)} />
@@ -389,9 +406,9 @@ function ProductUpdateModal({
               <button
                 type="submit"
                 disabled={loading}
-                className="bg-blue-500 w-full  place-content-end flex justify-center items-center cursor-pointer text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-600 transition-colors"
+                className="bg-[#FF6400] w-full  place-content-end flex justify-center items-center cursor-pointer text-white px-6 py-2 rounded-lg font-bold hover:bg-[#FF6400]/80 transition-colors"
               >
-                {loading ? <Loading /> : "Update"}
+                {loading ? <Loading /> : "Câp nhật "}
               </button>
             </form>
           </div>

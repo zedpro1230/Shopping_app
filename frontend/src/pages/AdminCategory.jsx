@@ -3,7 +3,7 @@ import SideBar from "../components/SideBar";
 import CategoryContent from "../components/CategoryContent";
 function AdminCategory() {
   return (
-    <div className="flex   mt-[85px] justify-start font-roboto ">
+    <div className="flex   mt-[85px] justify-start font-roboto max-xl:flex-col">
       <NavBar />
       <SideBar />
       <section className=" w-full flex-1 p-2">

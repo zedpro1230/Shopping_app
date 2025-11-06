@@ -9,6 +9,7 @@ import { storeUserInfo, setLogin } from "../features/counters/cartSlice";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import backendHost from "../config/backendHost";
+import { toast, ToastContainer } from "react-toastify";
 function LoginForm() {
   const {
     register,
@@ -39,8 +40,13 @@ function LoginForm() {
         }
       }
     } catch (error) {
-      console.error("Login failed:", error.response?.data || error.message);
-      // Handle login error (e.g., show error message)
+      toast.error(
+        `Đăng nhập thất bại: ${error.response?.data?.content || error.message}`,
+        {
+          position: "top-right",
+          autoClose: 2000,
+        }
+      );
     }
   };
   const handleGoogleSignIn = async () => {
@@ -53,9 +59,17 @@ function LoginForm() {
 
   return (
     <div className=" bg-white/40 backdrop-blur p-6 rounded-2xl shadow-md w-[500px] flex flex-col gap-6 border border-gray-200">
+      <ToastContainer />
       <h2 className="text-[32px] font-bold font-roboto text-[#424242] text-center">
         Đăng Nhập
       </h2>
+      <div className="flex items-center justify-center gap-1">
+        <div className="flex-1 h-[1px] bg-gray-800"></div>
+        <p className="  font-roboto font-bold text-[#2A4178]">
+          Tài khoản nhân viên
+        </p>
+        <div className="flex-1 h-[1px] bg-gray-800"></div>
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="    flex flex-col gap-4"
@@ -72,7 +86,7 @@ function LoginForm() {
             </IconContext.Provider>
           </label>
           <input
-            className="border bg-white cursor-pointer border-gray-100 p-2 h-[40px] text-[20px] rounded-lg w-full mb-2 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+            className="border bg-white cursor-pointer border-gray-300 p-2 h-[40px] text-[20px] rounded-lg w-full mb-2 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
             type="email"
             id="email"
             placeholder="Nhập email ex:123@gmail.com"
@@ -97,7 +111,7 @@ function LoginForm() {
             </IconContext.Provider>
           </label>
           <input
-            className="border bg-white cursor-pointer border-gray-100 p-2 h-[40px] text-[20px] rounded-lg w-full mb-2 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
+            className="border bg-white cursor-pointer border-gray-300 p-2 h-[40px] text-[20px] rounded-lg w-full mb-2 text-[#2A4178] focus:outline-none  focus:ring-2 focus:ring-blue-500"
             type="password"
             placeholder="Nhập mật khẩu"
             id="password"
@@ -109,14 +123,16 @@ function LoginForm() {
         </div>
         <button
           type="submit"
-          className="bg-[#FF6F00] text-2xl shadow-xs text-white font-bold font-roboto p-2 rounded-lg cursor-pointer hover:bg-white hover:text-[#FF6F00] transition-colors"
+          className="bg-[#FF6F00] text-2xl shadow-xs text-white font-bold font-roboto p-2 rounded-lg cursor-pointer hover:bg-[#FF6F00]/80 hover:text-white transition-colors"
         >
           Đăng Nhập
         </button>
       </form>
       <div className="flex items-center justify-center gap-1">
         <div className="flex-1 h-[1px] bg-gray-800"></div>
-        <p className="  font-roboto font-bold text-[#2A4178]">Hoặc</p>
+        <p className="  font-roboto font-bold text-[#2A4178]">
+          Dành cho khách hàng
+        </p>
         <div className="flex-1 h-[1px] bg-gray-800"></div>
       </div>
       <button

@@ -99,7 +99,7 @@ function BannerBody() {
                   <img
                     src={banner.image.url}
                     alt={banner.image.publicId}
-                    className="h-[350px] object-cover w-full rounded-lg"
+                    className="h-[350px] object-cover w-full rounded-lg max-xl:h-[200px] max-md:h-[80px]"
                   />
                 </td>
                 <td className=" h-[200px] pl-4">
@@ -109,7 +109,7 @@ function BannerBody() {
                         hover:bg-[#5EABD6]/50 transition-colors"
                       onClick={() => handleModalData(banner._id)}
                     >
-                      Cập nhật
+                      <p className="max-md:hidden">Cập nhật</p>
                       <IconContext.Provider
                         value={{ className: "size-[30px] fill-[#5EABD6]" }}
                       >
@@ -121,7 +121,7 @@ function BannerBody() {
                         hover:bg-[#E14434]/50 transition-colors"
                       onClick={() => handleDelete(banner._id)}
                     >
-                      Xóa
+                      <p className="max-md:hidden">Xóa</p>
                       <IconContext.Provider
                         value={{ className: "size-[30px] fill-[#E14434]" }}
                       >

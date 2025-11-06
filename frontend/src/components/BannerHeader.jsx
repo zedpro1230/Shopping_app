@@ -52,23 +52,23 @@ function BannerHeader() {
   const handleClose = () => setOpen(false);
   return (
     <div>
-      <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center ">
-        <h1 className="text-2xl font-bold font-roboto text-[#424242]">
+      <div className="bg-white p-4 rounded-lg shadow-md flex justify-between items-center max-xl:flex-col">
+        <h1 className="text-2xl font-bold font-roboto text-[#424242] max-md:text-xl">
           Danh sách hình ảnh Banner
         </h1>
         ,
-        <div className="flex gap-5">
+        <div className="flex gap-5 max-xl:flex-col max-xl:items-center">
           <div className="flex items-center gap-2 text-[#424242]">
-            <span className="bg-gray-200 px-5 py-1 rounded-[25px] font-semibold font-roboto">
+            <span className="bg-gray-200 px-5 py-1 rounded-[25px] font-semibold font-roboto max-md:text-[16px]">
               Trang Chủ
             </span>
             <span className="font-roboto"> / </span>
-            <span className="bg-gray-200 px-5 py-1 text-[#424242] rounded-[25px] font-semibold font-roboto">
+            <span className="bg-gray-200 px-5 py-1 text-[#424242] rounded-[25px] font-semibold font-roboto max-md:text-[16px]">
               Banner
             </span>
           </div>
           <button
-            className="bg-[#FF6F00] text-white p-4 font-bold font-roboto rounded-[12px] cursor-pointer hover:bg-[#FF8F00] transition-colors"
+            className="bg-[#FF6F00] text-white p-4 font-bold font-roboto rounded-[12px] max-md:text-[16px] cursor-pointer hover:bg-[#FF8F00] transition-colors"
             onClick={handleOpen}
           >
             Tạo Banner
@@ -85,7 +85,10 @@ function BannerHeader() {
           justifyContent: "center",
         }}
       >
-        <div className="bg-white w-[600px]  rounded-2xl flex flex-col items-center justify-start p-6">
+        <div
+          className="bg-white w-[600px]  rounded-2xl flex flex-col items-center justify-start p-6
+        max-md:w-[90%] "
+        >
           <h2 className="text-2xl font-bold mb-4 text-[#2A4178] font-roboto">
             Tải Ảnh Banner
           </h2>
@@ -94,7 +97,7 @@ function BannerHeader() {
               htmlFor="file-upload"
               className={`w-full mb-4 text-center h-[500px] border border-dashed 
               border-gray-300 p-2 rounded-lg flex flex-col justify-center items-center cursor-pointer
-              ${image ? "hidden" : ""}`}
+              ${image ? "hidden" : ""} max-md:h-[300px]`}
             >
               <IconContext.Provider
                 value={{
@@ -121,7 +124,7 @@ function BannerHeader() {
                 <img
                   src={image}
                   alt="Preview"
-                  className="w-full h-[500px] rounded-lg object-cover"
+                  className="w-full h-[500px] rounded-lg object-cover max-md:h-[300px]"
                 />
                 <button
                   type="button"

@@ -5,9 +5,9 @@ function AdminProduct() {
   return (
     <div>
       <NavBar />
-      <div className="mt-[85px] gap-2 flex">
+      <div className="mt-[85px] gap-2 flex max-xl:flex-col">
         <SideBar />
-        <section className="w-full flex-1 p-2">
+        <section className="w-[85%] flex-1 p-2 max-xl:w-full">
           <ProductContent />
         </section>
       </div>
