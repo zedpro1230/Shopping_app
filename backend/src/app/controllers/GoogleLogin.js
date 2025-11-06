@@ -105,7 +105,7 @@ class GoogleAuthController {
         });
 
         res.redirect(
-          `https://shopping-qpz2g445g-zedpro1230s-projects.vercel.app/home?data=${encodeURIComponent(
+          `https://shopping-app-seven-self.vercel.app/home?data=${encodeURIComponent(
             JSON.stringify({
               user: {
                 id: authData.user._id,
