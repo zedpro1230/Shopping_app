@@ -755,9 +755,9 @@
   .rounded-\[50\%\] {
     border-radius: 50%;
   }
-  .rounded-full {
+  /* .rounded-full {
     border-radius: calc(infinity * 1px);
-  }
+  } */
   .rounded-lg {
     border-radius: var(--radius-lg);
   }
