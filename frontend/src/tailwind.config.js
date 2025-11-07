@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  content: ["./public/index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       screens: {
@@ -9,8 +9,4 @@ module.exports = {
     },
   },
   plugins: [],
-  corePlugins: {
-    // Ensure all core plugins are enabled
-    preflight: true,
-  },
 };
